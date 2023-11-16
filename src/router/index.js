@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Admin from '../views/Admin.vue'
+import Admin from '../views/Admin/Admin.vue'
 
 
 const router = createRouter({
@@ -12,23 +12,28 @@ const router = createRouter({
 		},
 		{
 			path: '/Orderedbooks',
-			component: () => import('../views/Orderedbooks.vue')
+			component: () => import('../views/Admin/Orderedbooks.vue')
 		},
 		{
 			path: '/Managethestudents',
-			component: () => import('../views/Managethestudents.vue')
+			component: () => import('../views/Admin/Managethestudents.vue')
 		},
 		{
 			path: '/Uploadbooks',
-			component: () => import('../views/Uploadbooks.vue')
+			component: () => import('../views/Admin/Uploadbooks.vue')
 		},
 		{
 			path: '/Books',
-			component: () => import('../views/Books.vue')
+			component: () => import('../views/Admin/Books.vue')
 		},
 		{
-			path: '/authorization',
-			component: () => import('../views/authorization.vue')
+			path: '/Authorization',
+			component: () => import('../components/Authorization.vue')
+		},
+		{
+			path: '/Logout',
+			component: () => import('../components/Authorization.vue')
+
 		},
 	],
 })

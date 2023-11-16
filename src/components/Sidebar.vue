@@ -13,12 +13,8 @@
 			</button>
 		</div>
 
-		<h3>Menu</h3>
+		<h3 class="admin_title">Admin</h3>
 		<div class="menu">
-			<router-link to="/" class="button">
-				<span class="material-icons">person</span>
-				<span class="text">Admin</span>
-			</router-link>
 			<router-link to="/Orderedbooks" class="button">
 				<span class="material-icons">book</span>
 				<span class="text">Orderedbooks</span>
@@ -54,7 +50,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import logoURL from '../assets/logo.png'
+import logoURL from '../assets/images/kiut_logo.png'
 
 const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
 
@@ -66,6 +62,8 @@ const ToggleMenu = () => {
 
 <style lang="scss" scoped>
 aside {
+
+	
 	display: flex;
 	flex-direction: column;
 
@@ -134,7 +132,7 @@ aside {
 	}
 
 	h3 {
-		color: var(--grey);
+		color: --primary;
 		font-size: 0.875rem;
 		margin-bottom: 0.5rem;
 		text-transform: uppercase;
