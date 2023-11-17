@@ -109,7 +109,7 @@ export default {
 				// If you add this, upload won't work
 				// headers: {
 				// 	'Content-Type': 'multipart/form-data',
-				// }
+				// 
 				headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json;charset=UTF-8'
