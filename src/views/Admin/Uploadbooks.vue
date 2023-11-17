@@ -23,7 +23,7 @@
 							</div>
 						</div>
 					</form>
-					<select v-model="uploadData.langauge" class="form-select">	
+					<select v-model="uploadData.langauge" class="form-select">
 						<option disabled>Langauge</option>
 						<option>Uzbek</option>
 						<option>Russian</option>
@@ -88,8 +88,8 @@ export default {
 				title: '',
 				publicationyear: '',
 				date: '',
-				langauge: 'Langauge',
-				category: 'Category'
+				langauge: '',
+				category: ''
 			};
 			this.count = 0;
 			this.previewImage = null;
@@ -103,14 +103,24 @@ export default {
 			this.uploadData['file'] = fileInput.files[0];
 			// console.log(this.uploadData)
 			const options = {
+				url: 'http://127.0.0.1:5208/api/Book',
 				method: 'POST',
 				body: this.uploadData,
 				// If you add this, upload won't work
+				// headers: {
+				// 	'Content-Type': 'multipart/form-data',
+				// }
 				headers: {
-					'Content-Type': 'multipart/form-data',
-				}
+					'Accept': 'application/json',
+					'Content-Type': 'application/json;charset=UTF-8'
+				},
 			};
 			console.log(this.uploadData)
+
+			axios(options)
+				.then(response => {
+					console.log(response.status);
+				});
 			// fetch('your-upload-url', options);
 
 		}
