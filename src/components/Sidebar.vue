@@ -8,9 +8,7 @@
 		</div>
 
 		<div class="menu-toggle-wrap">
-			<button class="menu-toggle" @click="ToggleMenu">
-				<span class="material-icons">keyboard_double_arrow_right</span>
-			</button>
+			
 		</div>
 
 		<h3 class="admin_title">Admin</h3>

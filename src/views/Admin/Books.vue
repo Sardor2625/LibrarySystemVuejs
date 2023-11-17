@@ -23,7 +23,7 @@
                         </tr>
 
                     </thead>
-                    <tbody v-if="this.students.length > 0">
+                    <!-- <tbody v-if="this.students.length > 0">
                         <tr v-for="(student, index) in this.students" :key="index">
                             <td>{{ student.id }}</td>
                             <td>{{ student.email }}</td>
@@ -31,7 +31,7 @@
                             <td>{{ student.last_name }}</td>
                             <td>{{ student.avatar }}</td>
                         </tr>
-                    </tbody>
+                    </tbody> -->
                     <!-- <tbody v-else>
                         <tr>
                             <td colspan="6">Loading</td>
@@ -54,16 +54,22 @@ export default {
         }
     },
     mounted() {
-
+        this.getbooks()
         // this.getStudents();
         // console.log('i am here')
     },
     methods: {
         getbooks() {
-            axios.get('https://reqres.in/api/users?page=2').then(res => {
-                this.students = res.data.data
-                //   console.log( this.students)
-            });
+            console.log("okay")
+            // axios.get('https://reqres.in/api/users?page=2').then(res => {
+            //     this.students = res.data.data
+            //     //   console.log( this.students)
+            // });
+            axios.get('http://192.168.137.1:5208/api/Books')
+            .then(res => {
+                // this.students = res.data.data
+                  console.log( res.data)
+            }).catch(err => console.log(err));
         }
     },
 }
