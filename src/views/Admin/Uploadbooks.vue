@@ -18,12 +18,12 @@
 								<input type="text" v-model="uploadData.publicationyear" class="form-control"
 									placeholder="Publication Year">
 							</div>
-							<div class="col">
-								<input type="date" v-model="uploadData.date" class="form-control" placeholder="MM.DD.YYYY">
-							</div>
+<!--							<div class="col">-->
+<!--								<input type="date" v-model="uploadData.date" class="form-control" placeholder="MM.DD.YYYY">-->
+<!--							</div>-->
 						</div>
 					</form>
-					<select v-model="uploadData.langauge" class="form-select">
+					<select v-model="uploadData.langauge" class="form-select">	
 						<option disabled>Langauge</option>
 						<option>Uzbek</option>
 						<option>Russian</option>
@@ -56,6 +56,8 @@
 <script>
 
 
+import axios from "axios";
+
 export default {
 	name: 'imageUpload',
 	data() {
@@ -87,9 +89,8 @@ export default {
 			this.uploadData = {
 				title: '',
 				publicationyear: '',
-				date: '',
-				langauge: '',
-				category: ''
+				langauge: 'Langauge',
+				category: 'Category'
 			};
 			this.count = 0;
 			this.previewImage = null;
@@ -102,25 +103,42 @@ export default {
 			this.uploadData['counter'] = this.count;
 			this.uploadData['file'] = fileInput.files[0];
 			// console.log(this.uploadData)
-			const options = {
-				url: 'http://127.0.0.1:5208/api/Book',
-				method: 'POST',
-				body: this.uploadData,
-				// If you add this, upload won't work
-				// headers: {
-				// 	'Content-Type': 'multipart/form-data',
-				// 
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json;charset=UTF-8'
-				},
-			};
-			console.log(this.uploadData)
+			
+      
+      /*
+      const options = {
+        url: 'http://127.0.0.1:5208/api/Book',
+        method: 'POST',
+        body: this.uploadData,
+        // If you add this, upload won't work
+        headers: {
+          // 'Accept': 'application/json',
+          'Content-type': 'application/json',
+          // 'Content-Type': 'multipart/form-data',
+          // accept: 'application/json',
+        },
+      };
+      axios(options)
+          .then(response =>{
+            console.log(response.status);
+          })
+          .catch(error => {console.log( 'the error has occured: ' + error) })
+      ;
+      */
 
-			axios(options)
-				.then(response => {
-					console.log(response.status);
-				});
+      axios({
+        method: 'post',
+        url: 'http://localhost:5208/api/Book',
+        data: JSON.stringify(this.uploadData),
+        config: { headers: {
+            'Accept': 'application/json',
+            // 'Content-Type': 'multipart/form-data'
+          }}
+      })
+          .then((response) => {console.log(response)})
+          .catch(error => {console.log( 'the error has occured: ' + error) });
+
+			console.log(this.uploadData)
 			// fetch('your-upload-url', options);
 
 		}
