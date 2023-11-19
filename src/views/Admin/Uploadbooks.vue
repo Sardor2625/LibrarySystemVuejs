@@ -31,8 +31,6 @@
 					</select>
 					<select v-model="uploadData.category" class="form-select">
 						<option disabled>Category</option>
-						<option>Classics</option>
-						<option>Fantasy</option>
 						<option>Horror</option>
 					</select>
 					<div id="counters">
