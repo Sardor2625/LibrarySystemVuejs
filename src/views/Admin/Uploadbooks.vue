@@ -10,12 +10,12 @@
 				<div class="inputs">
 					<div class="form-group">
 						<label for="exampleFormControlInput1"></label>
-						<input type="text" v-model="uploadData.title" class="form-control" placeholder="Title">
+						<input type="text" v-model="uploadData.Title" class="form-control" placeholder="Title">
 					</div>
 					<form>
 						<div class="row">
 							<div class="col">
-								<input type="text" v-model="uploadData.publicationyear" class="form-control"
+								<input type="text" v-model="uploadData.Publicationyear" class="form-control"
 									placeholder="Publication Year">
 							</div>
 <!--							<div class="col">-->
@@ -23,13 +23,13 @@
 <!--							</div>-->
 						</div>
 					</form>
-					<select v-model="uploadData.langauge" class="form-select">	
+					<select v-model="uploadData.Langauge" class="form-select">	
 						<option disabled>Langauge</option>
 						<option>Uzbek</option>
 						<option>Russian</option>
 						<option>English</option>
 					</select>
-					<select v-model="uploadData.category" class="form-select">
+					<select v-model="uploadData.Category" class="form-select">
 						<option disabled>Category</option>
 						<option>Horror</option>
 					</select>
@@ -63,11 +63,10 @@ export default {
 			previewImage: null,
 			count: 0,
 			uploadData: {
-				title: '',
-				publicationyear: '',
-				date: '',
-				langauge: 'Langauge',
-				category: 'Category',
+        title: '',
+        publicationYear: '',
+        language: 'Langauge',
+        categoryId: 1
 			},
 		}
 	},
@@ -86,9 +85,9 @@ export default {
 		clear(e) {
 			this.uploadData = {
 				title: '',
-				publicationyear: '',
-				langauge: 'Langauge',
-				category: 'Category'
+				publicationYear: '',
+        language: 'Langauge',
+				categoryId: 1
 			};
 			this.count = 0;
 			this.previewImage = null;
@@ -98,8 +97,8 @@ export default {
 		upload(e) {
 
 			const fileInput = document.querySelector('#uploadImage');
-			this.uploadData['counter'] = this.count;
-			this.uploadData['file'] = fileInput.files[0];
+			this.uploadData['count'] = this.count;
+			// this.uploadData['file'] = fileInput.files[0];
 			// console.log(this.uploadData)
 			
       
@@ -123,14 +122,16 @@ export default {
           .catch(error => {console.log( 'the error has occured: ' + error) })
       ;
       */
-
+console.log(this.uploadData);
       axios({
-        method: 'post',
-        url: 'http://localhost:5208/api/Book',
-        data: JSON.stringify(this.uploadData),
+        method: 'POST',
+        url: 'http://localhost:5208/api/BookOnlyTitleCount/add-book',
+        // data: JSON.stringify(this.uploadData),
+        data: this.uploadData,
         config: { headers: {
-            'Accept': 'application/json',
-            // 'Content-Type': 'multipart/form-data'
+            // 'Accept': 'application/json'
+            // /*'Content-Type': 'multipart/form-data'*/
+            'Content-Type': 'application/json'
           }}
       })
           .then((response) => {console.log(response)})
